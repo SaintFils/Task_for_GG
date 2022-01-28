@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreController : MonoBehaviour
@@ -15,7 +12,7 @@ public class ScoreController : MonoBehaviour
 
     private void RefreshScore()
     {
-        _counter += 10; //i'm so sorry for magic numbers like that. 
+        _counter += 10; //i'm so sorry for magic numbers like this. 
         scoreText.Format(_counter);
     }
     private void OnEnable()

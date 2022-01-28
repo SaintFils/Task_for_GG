@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Cannon : MonoBehaviour
@@ -5,6 +6,16 @@ public class Cannon : MonoBehaviour
     [SerializeField] private Bullet bulletPref;
     [SerializeField] private Transform shootPoint;
     [SerializeField] private Transform targetPoint;
+    [SerializeField] private float depth = 10.0f;
+
+    private Vector3 _mousePosition;
+    private Vector3 _aim;
+    private Camera _mainCamera;
+
+    private void Start()
+    {
+        _mainCamera = Camera.main;
+    }
 
     private void Update()
     {
@@ -17,7 +28,9 @@ public class Cannon : MonoBehaviour
     private void Shoot()
     {
         Bullet bullet = Instantiate(bulletPref, shootPoint.position, Quaternion.identity);
-        bullet.transform.LookAt(targetPoint);
-        
+        _mousePosition = Input.mousePosition;
+        _mousePosition += _mainCamera.transform.forward * depth;
+        _aim = _mainCamera.ScreenToWorldPoint(_mousePosition);
+        bullet.transform.LookAt(_aim);
     }
 }
