@@ -8,7 +8,7 @@ public class Target : MonoBehaviour
 
     private Transform _currentPoint;
     private int _pointIndex = 0;
-    public static event Action onTargetHit;
+    public static event Action OnTargetHit;
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class Target : MonoBehaviour
     {
         if (other.GetComponent<Bullet>())
         {
-            if (onTargetHit != null) onTargetHit.Invoke();
+            if (OnTargetHit != null) OnTargetHit.Invoke();
             Destroy(other.gameObject);
         }
     }
